@@ -1,0 +1,148 @@
+body#main.theme-light {
+  background: #f2f2f2;
+
+  ::-webkit-scrollbar-track-piece {
+    background: #f2f2f2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #a3b6c6;
+  }
+
+  #app-header,
+  #directory-holder,
+  #controls {
+    border-bottom-color: #f2f2f2;
+    background: #dee1e6;
+  }
+
+  h1 {
+    color: #232a34;
+  }
+
+  #settings {
+    background: #dee1e6;
+    border-left-color: #82b3cc;
+    color: #232a34;
+
+    .setting {
+      .checkbox {
+        background: #fff;
+      }
+
+      &:not(.active):hover .checkbox,
+      .setting.active .checkbox {
+        background: #a3b6c6;
+      }
+
+      #theme-selector {
+        color: #232a34;
+        border-color: #82b3cc;
+        background-color: #f2f2f2;
+      }
+    }
+  }
+
+  #controls {
+    #controls-right {
+      #mode {
+        color: #232a34;
+
+        &.legit > p span {
+          color: #232a34;
+        }
+
+        > p span {
+          color: #eb6275;
+        }
+
+        #mode-toggle {
+          div {
+            background: #fff;
+          }
+
+          &.legit {
+            background: #9ad094;
+          }
+
+          &:hover div {
+            background: #fff;
+          }
+        }
+      }
+
+      #modifiers {
+        color: #232a34;
+
+        #regex, #numbers, #zero-index {
+          background: #596272;
+          color: #fff;
+
+          &:not(.active):hover {
+            background:  #82b3cc;
+          }
+
+          &.active {
+            color: #1b1d23;
+            background: #a3b6c6;
+          }
+        }
+
+        #regex-flags > div {
+          background: #fff;
+
+          &:not(.active):hover,
+          &.active {
+            background: #a3b6c6;
+          }
+        }
+      }
+    }
+  }
+
+  .btn:hover {
+    background: #2a6693;
+  }
+
+  input[type="text"] {
+    background: #ffffff;
+    border-color: #dee1e6;
+    color: #232a34;
+
+    &:focus {
+      border-color: #82b3cc;
+      background: #fff;
+    }
+
+    &::-webkit-input-placeholder {
+      color: #a9b6d0;
+    }
+  }
+
+  .ignored-files,
+  .file-list li {
+    color: #232a34;
+  }
+
+  .btn {
+    background: #367fc2;
+    color: #fff;
+  }
+
+  #result-message {
+    &.error {
+      color: #eb6275;
+    }
+
+    &.success {
+      color: #568c68;
+    }
+  }
+
+  .old-filename {
+    color: #eb6275;
+  }
+
+  .new-filename {
+    color: #568c68;
+  }
+}

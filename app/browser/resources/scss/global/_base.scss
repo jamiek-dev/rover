@@ -1,0 +1,38 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $menlo;
+  font-size: .875rem;
+  min-width: 1080px;
+  background: $content_background;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: "Arial", "Helvetica", "sans-serif";
+  color: $default_text;
+  margin: 0 0 2rem;
+}
+
+p, button, input, ul, li {
+  font-family: $menlo;
+}
+
+::-webkit-scrollbar { background: transparent; }
+::-webkit-scrollbar-button { background: transparent; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-resizer { background: transparent; }
+::-webkit-scrollbar-track-piece {
+  background: $content_background;
+}
+::-webkit-scrollbar-thumb {
+  background: $textfield_selected_bg;
+}

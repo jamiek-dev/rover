@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Space Camp: Rover</title>
+    <link rel="stylesheet" href="../resources/style.min.css">
+  </head>
+
+  <script>
+  const Electron = require('electron'),
+        { remote } = Electron,
+        dataStore = remote.getGlobal('dataStore');
+
+  let theme;
+
+  if(!dataStore.get('theme') || dataStore.get('theme') == 'dark') {
+    document.writeln('<body id="main">');
+    theme = 'dark';
+  } else {
+    document.writeln('<body id="main" class="theme-' + dataStore.get('theme') + '">');
+    theme = dataStore.get('theme');
+  }
+  </script>
+
+    <!-- Header section containing main window controls -->
+    <div id="app-header">
+
+      <div id="fun-tidbit">
+        <p></p>
+      </div>
+    </div>
+
+    <!-- Directory selector and scanner -->
+    <div id="directory-holder">
+      <input type="text" name="selected_directory" id="selected-directory" value="" placeholder="Target Directory"/>
+      <div id="get-directory-btn">
+        <img src="../resources/img/directory.svg" alt="">
+      </div>
+      <button type="button" name="set_directory_btn" id="set-directory-btn" class="btn">Scan Files</button>
+    </div>
+
+    <!-- List of scanned, tested and updated files -->
+    <div id="main-content">
+      <ul id="file-list"></ul>
+    </div>
+
+    <!-- All controls for find/replace, modifiers, mode and execute -->
+    <div id="controls">
+      <div id="controls-left">
+        <!-- Fail/Success messeging -->
+        <p id="result-message">&nbsp;</p>
+
+        <!-- Find and replace text fields -->
+        <div id="control-inputs">
+          <input type="text" name="search_for" id="search-for" class="input-control" disabled placeholder="What to Find" />
+          <input type="text" name="replace_with" id="replace-with" class="input-control" disabled placeholder="Replacement" />
+        </div>
+      </div>
+
+      <!-- Modifiers, mode and execute controls -->
+      <div id="controls-right">
+        <!-- Regex and number append controls -->
+        <div id="modifiers">
+          <div id="regex-flags">
+            <div id="case-insensitive">
+              <div class="checkbox">
+                <img src="../resources/img/checked.svg" alt="">
+              </div>
+            </div>
+            <div id="global">
+              <div class="checkbox">
+                <img src="../resources/img/checked.svg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div id="regex" class="modifier">.*</div>
+          <div id="numbers" class="modifier">#</div>
+          <div id="zero-index" class="modifier">##</div>
+        </div>
+
+        <!-- Mode select (dry-run or legit) -->
+        <div id="mode">
+          <p>Mode: <span>Dry-Run</span></p>
+          <div id="mode-toggle">
+            <div></div>
+          </div>
+        </div>
+
+        <!-- Execute button -->
+        <button type="button" name="replace_btn" id="replace-btn" class="btn" disabled>Execute</button>
+      </div>
+
+    </div>
+
+    <script>
+
+    </script>
+    <script src="../resources/js/main.js"></script>
+    <script src="../resources/js/settings.js"></script>
+  </body>
+</html>

@@ -1,0 +1,461 @@
+// Main, top bar of the application
+// -------------------------------------------------------------------------------
+#app-header {
+  background: $menu_gray;
+  border-bottom: 2px solid $content_background;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  // justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-app-region: drag;
+
+  #fun-tidbit {
+    margin-left: 1rem;
+    font-size: .775rem;
+    color: $default_text;
+  }
+
+  #app-title {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: $default_text;
+    font-family: "Arial", "Helvetica", "sans-serif";
+    cursor: default;
+    font-size: .75rem;
+    user-select: none;
+    display: none;
+  }
+
+  // Wrapper for the Quit, minimize and maximize buttons
+  #main-controls {
+      width: 110px;
+      display: flex;
+      height: 100%;
+      align-items: center;
+      display: none;
+
+      div {
+      -webkit-app-region: no-drag;
+      width: 15px;
+      height: 15px;
+      display: flex;
+      margin-right: 1rem;
+      align-items: flex-end;
+
+      img{
+        width: 100%;
+        height: auto;
+
+        &:last-child {
+          display: none;
+        }
+      }
+
+      &#close {
+        margin-left: 1rem;
+      }
+    }
+
+    &:hover {
+      div {
+        img {
+          &:first-child {
+            display: none;
+          }
+
+          &:last-child {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  #settings-toggle {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+    flex: flex-end;
+
+    &:hover {
+      img {
+        transform: rotate(-360deg);
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      transform-origin: center;
+      transition: all 0.15s linear;
+    }
+  }
+}
+
+// Main wrapper for the application's main browser window
+// -------------------------------------------------------------------------------
+#main {
+  #directory-holder {
+    background: $menu_gray;
+    padding: 1rem;
+    position: relative;
+  }
+
+  #settings {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 400px;
+    height: 100vh;
+    background: $textfield_bg;
+    z-index: 99999;
+    border-left: .5rem solid $textfield_selected_bg;
+    transition: all 0.15s linear;
+    padding: 1rem;
+    color: $default_text;
+    font-family: "Arial", "Helvetica", "sans-serif";
+
+    #close-settings {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 1.5rem;
+      top: 1.5rem;
+      cursor: pointer;
+    }
+
+    &.active {
+      left: calc(100% - 400px);
+    }
+
+    .setting {
+      .checkbox {
+        transition: all 0.15s linear;
+        width: 15px;
+        height: 15px;
+        background: $button_gray;
+        margin-right: .25rem;
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        top: 2px;
+
+        img {
+          width: calc(100% - 4px);
+          height: auto;
+          position: relative;
+          left: 2px;
+          top: 2px;
+          display: none;
+        }
+      }
+
+      &:not(.active):hover {
+        .checkbox {
+          background:  $textfield_selected_bg;
+        }
+      }
+
+      &.active {
+        .checkbox {
+          background: $textfield_selected_border;
+
+          img {
+            display: block;
+          }
+        }
+      }
+
+      #theme-selector {
+        color: #8d95a1;
+        border-color: #181a1f;
+        background-color: #353b45;
+        width: 100%;
+        font-size: 1rem;
+        margin: .25rem 0 1rem;
+        height: 2rem;
+        outline: 0;
+      }
+    }
+  }
+
+  #main-content {
+    height: calc(100vh - 275px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #controls {
+    background: $menu_gray;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-width: 1080px;
+    padding: 1rem;
+
+    #controls-right {
+      width: 125px;
+      display: inline-block;
+
+      #mode, #modifiers {
+        width: 175px;
+        height: 32px;
+        display: inline-block;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        color: $default_text;
+      }
+
+      #mode {
+        > p span {
+          color: $error_red;
+        }
+
+        &.legit {
+          > p span {
+            color: $bright_green;
+          }
+        }
+
+        #mode-toggle {
+          width: 55px;
+          height: 29px;
+          border-radius: 50px;
+          margin-left: auto;
+          position: relative;
+          cursor: pointer;
+          background: $error_red;
+          transition: all 0.15s linear;
+
+          div {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: $button_gray;
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            transition: all 0.15s linear;
+          }
+
+          &:hover {
+            div {
+              background: $textfield_selected_bg;
+            }
+          }
+
+          &.legit {
+            background: $bright_green;
+
+            div {
+              left: 48%;
+            }
+          }
+        }
+      }
+
+      #modifiers {
+        > div {
+          user-select: none;
+        }
+
+        #regex-flags {
+          width: 50%;
+          height: 25px;
+          visibility: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          > div {
+            transition: all 0.15s linear;
+            width: 15px;
+            height: 15px;
+            background: $button_gray;
+            margin-right: 1.5rem;
+            position: relative;
+            cursor: pointer;
+
+            &:not(.active):hover {
+              background: $textfield_selected_bg;
+            }
+
+            img {
+              width: calc(100% - 4px);
+              height: auto;
+              position: relative;
+              left: 2px;
+              top: 0;
+              display: none;
+            }
+
+            &.active {
+              background: $textfield_selected_border;
+
+              img {
+                display: inline-block;
+              }
+            }
+
+            &#case-insensitive:after {
+              content: "i";
+              position: absolute;
+              left: calc(100% + .25rem);
+              top: 0;
+            }
+
+            &#global:after {
+              content: "g";
+              position: absolute;
+              left: calc(100% + .25rem);
+              top: 0;
+            }
+          }
+
+          &.active {
+            visibility: visible;
+          }
+        }
+
+        #regex, #numbers, #zero-index {
+          width: 28px;
+          height: 25px;
+          border-radius: 5px;
+          background: $button_gray;
+          margin-left: .5rem;
+          cursor: pointer;
+          transition: all 0.15s linear;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &.active {
+            background: $textfield_selected_border;
+            color: $textfield_bg;
+          }
+
+          &:not(.active):hover {
+            background: $textfield_selected_bg;
+          }
+        }
+      }
+    }
+
+    #controls-left {
+      width: calc(100% - 195px);
+      display: inline-block;
+
+      #control-inputs {
+        margin-right: .5rem;
+
+        input[type="text"] {
+          width: 100%;
+          margin-right: 0;
+        }
+
+        #search-for {
+          margin-bottom: .75rem;
+        }
+      }
+    }
+  }
+
+  #result-message {
+    margin-top: 0;
+    margin-left: .25rem;
+    margin-bottom: 1.25rem;
+
+    &.error {
+      color: $error_red;
+    }
+
+    &.success {
+      color: $bright_green;
+    }
+  }
+
+  .ignored-file {
+    color: $default_text;
+  }
+
+  .old-filename {
+    color: $error_red;
+  }
+
+  .new-filename {
+    color: $bright_green;
+  }
+
+  #file-list {
+    list-style: none;
+    padding-left: 1rem;
+    line-height: 1.75;
+
+    li {
+      color: $default_text;
+    }
+  }
+
+  input[type="text"] {
+    background: $textfield_bg;
+    padding: .5rem;
+    border: 2px solid $textfield_bg;
+    border-radius: 8px;
+    outline: 0;
+    color: $textfield_text;
+    font-size: .875rem;
+    width: calc(100% - 195px);
+    margin-right: .5rem;
+    display: inline-block;
+    font-family: $menlo;
+    transition: all 0.15s linear;
+
+    &::-webkit-input-placeholder {
+      color: $placeholder_text;
+    }
+
+    &:focus {
+      border-color: $textfield_selected_border;
+      background: $textfield_selected_bg;
+    }
+  }
+
+  #get-directory-btn {
+    position: absolute;
+    width: 17px;
+    height: 15px;
+    right: 225px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: pointer;
+  }
+
+  .ignored-file {
+    opacity: .25;
+  }
+
+  .btn {
+    background: $button_gray;
+    border-radius: 8px;
+    border: none;
+    color: $default_text;
+    font-size: .875rem;
+    padding: .5rem;
+    display: inline-block;
+    width: 175px;
+    outline: 0;
+    cursor: pointer;
+    transition: all 0.15s linear;
+
+    &:hover {
+      color: $white;
+      background: $textfield_selected_bg;
+    }
+  }
+}

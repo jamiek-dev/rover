@@ -1,0 +1,24 @@
+{
+  "name": "rover",
+  "productName": "Rover",
+  "version": "1.1.0",
+  "description": "Part of the space camp fleet allowing users to mass update file names and mass find and replace within files",
+  "main": "main.js",
+  "scripts": {
+    "electron": "electron .",
+    "watch": "onchange './app/browser/resources/scss/**/*.scss' './app/browser/resources/js/**/*.js' -- yarn run compile",
+    "compile": "node-sass ./app/browser/resources/scss/style.scss ./app/browser/resources/style.min.css --output-style compressed",
+    "uglify": "uglifyjs ./app/browser/resources/js/global.js --compress --mangle toplevel -o ./app/browser/resources/global.min.js"
+  },
+  "author": "Jamie Keomanivong",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.0.2",
+    "node-sass": "^4.11.0",
+    "onchange": "^5.2.0",
+    "uglify-js": "^3.4.9"
+  },
+  "dependencies": {
+    "electron-packager": "^13.0.1"
+  }
+}
