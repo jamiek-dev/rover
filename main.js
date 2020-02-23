@@ -206,15 +206,6 @@ const mainMenuTemplate = [
               dataStore.set('theme', 'light');
               mainWindow.webContents.send('renderTheme', 'light');
             }
-          },
-          {
-            label: 'HM',
-            type: 'radio',
-            checked: dataStore.get('theme') == 'hm' ? true : false,
-            click() {
-              dataStore.set('theme', 'hm');
-              mainWindow.webContents.send('renderTheme', 'hm');
-            }
           }
         ]
       }
