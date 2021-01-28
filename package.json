@@ -13,7 +13,7 @@
   "author": "Jamie Keomanivong",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^4.0.2",
+    "electron": "^9.4.0",
     "node-sass": "^4.11.0",
     "onchange": "^5.2.0",
     "uglify-js": "^3.4.9"
